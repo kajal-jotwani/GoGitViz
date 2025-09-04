@@ -11,6 +11,8 @@ This means you get a complete picture of your coding activity, even if you:
 
 With GoGitViz, your contribution graph reflects your true local commit history.
 
+![alt text](image.png)
+
 ## Features
 - Scan your machine for local Git repositories.
 - Track commits by email.
@@ -18,25 +20,54 @@ With GoGitViz, your contribution graph reflects your true local commit history.
 - Colored terminal heatmap like GitHub.
 
 ## Installation
+
+1. Clone the repository:
 ```bash
-git clone https://github.com/yourname/gogitlocalstats
-cd gogitlocalstats
+git clone https://github.com/your-username/GoGitViz
+cd GoGitViz
+```
+
+2. Install dependencies:
+```bash
 go mod tidy
-go build -o gogitstats
+```
+
+3. Build the executable:
+```bash
+go build -o gogitvis
+```
+
+4. (Optional) Add to PATH for global access:
+```bash
+sudo mv gogitvis /usr/local/bin/
 ```
 ## Usage
 
-**Add a folder to scan**
-```bash 
-./gogitstats --add /path/to/code
-```
+1. **Add repositories to track**
+   
+   First, add the folders containing your Git repositories:
+   ```bash 
+   ./gogitvis -add ~/code        # Add specific folder
+   ./gogitvis -add ~            # Add home directory
+   ./gogitvis -add .            # Add current directory
+   ```
 
-**Generate stats**
-```bash 
-./gogitstats --email "you@example.com"
-```
+2. **View your commit statistics**
+   
+   Generate a visualization of your commits:
+   ```bash 
+   ./gogitvis -email "your@email.com"
+   ```
+   Use the email address associated with your Git commits.
 
-**Change time range (default 6 months)**
-```bash 
-./gogitstats --email "you@example.com" --months 12
-```
+3. **Customize time range**
+   
+   Change the number of months to display (default is 6):
+   ```bash 
+   ./gogitvis -email "your@email.com" -months 12
+   ```
+
+4. **Tips**
+   - Make sure to use the same email address that you use for your Git commits
+   - You can add multiple folders to scan by running the -add command multiple times
+   - The tool stores repository locations in `~/.gogitlocalstats`
